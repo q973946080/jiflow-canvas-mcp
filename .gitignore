@@ -1,0 +1,13 @@
+# dependencies (dev-only; never needed at runtime)
+node_modules/
+
+# generated example artifacts (recreate with `npm run seed:demo`)
+examples/demo-store/
+examples/auth.demo.json
+
+# local-only scanner term overrides (never commit or publish)
+scripts/verify/restricted-terms.local.json
+
+# logs and OS noise
+*.log
+.DS_Store

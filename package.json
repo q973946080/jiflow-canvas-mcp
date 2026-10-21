@@ -1,0 +1,35 @@
+{
+  "name": "jiflow-canvas-mcp",
+  "version": "0.1.0",
+  "description": "Standalone MCP server for AI agents to read and modify a local canvas graph with CAS concurrency control, scoped permissions and durable operation receipts.",
+  "type": "module",
+  "license": "MIT",
+  "private": false,
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "bin": {
+    "jiflow-canvas-mcp": "src/server/main.mjs"
+  },
+  "files": [
+    "src/",
+    "examples/",
+    "README.md",
+    "README.zh-CN.md",
+    "ARCHITECTURE.md",
+    "SECURITY.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node src/server/main.mjs",
+    "seed:demo": "node examples/seed-demo.mjs",
+    "demo": "node examples/demo-client.mjs",
+    "demo:conflict": "node examples/conflict-demo.mjs",
+    "test": "node --test \"test/**/*.test.mjs\"",
+    "test:acceptance": "node scripts/verify/run-acceptance.mjs",
+    "audit:secrets": "node scripts/verify/scan-secrets.mjs"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "1.30.0"
+  }
+}
