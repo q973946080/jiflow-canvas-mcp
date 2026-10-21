@@ -4,10 +4,10 @@ This document describes the security model of `jiflow-canvas-mcp` v0.1.0: the tr
 what an AI agent can and cannot reach, token handling, fail-closed startup, path containment, store
 permissions and atomicity, audit logging, CAS as a safety property, and the known risks and limitations.
 
-> **Status:** **MIT licensed**; final independent verification passed with 179/179 automated tests and 11/11 functional
-> acceptance checks. The project is staged in the private GitHub repository
-> [`q973946080/jiflow-canvas-mcp`](https://github.com/q973946080/jiflow-canvas-mcp) and is **not yet publicly released**.
-> **No external security audit, fuzzing or penetration test has been performed.** The statements below describe
+> **Status:** **MIT licensed**; publicly available at
+> [`q973946080/jiflow-canvas-mcp`](https://github.com/q973946080/jiflow-canvas-mcp). Release verification passed 179/179
+> automated tests and 11/11 functional acceptance checks. **No external security audit, fuzzing or penetration test
+> has been performed.** The statements below describe
 > the implemented design and the verification that exists; they are not a certification. The full candidate
 > directory must never be published (only the explicit-whitelist public package is eligible for release).
 >
@@ -344,8 +344,8 @@ depend on severity, reproducibility, and maintainer availability; an acknowledge
 of a remediation deadline. If you do not receive an acknowledgement after 7 days, follow up using the same email.
 
 This project has passed its current independent technical verification, but that is not a substitute for an
-external security audit, fuzzing, or penetration testing. The repository remains private during release staging;
-public release requires a separate explicit maintainer decision. Do not deploy this candidate in an untrusted or
-public environment without your own security review.
+external security audit, fuzzing, or penetration testing. The source is publicly available; review the threat model
+and limitations above before deployment. Do not deploy it in an untrusted or public environment without your own
+security review.
 
 See [`README.md`](README.md) for project status and [`ARCHITECTURE.md`](ARCHITECTURE.md) for the design.
