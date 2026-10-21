@@ -334,7 +334,7 @@ deployment. It is design verification, not a security audit.
 
 ## Reporting
 
-Please report suspected security vulnerabilities privately by emailing **[chen01220992@gmail.com](mailto:chen01220992@gmail.com)**.
+Please report suspected security vulnerabilities privately by emailing **[chen01220992 (at) gmail (dot) com](mailto:chen01220992%40gmail.com)**.
 Do not post an unpatched vulnerability in a public issue or discussion. Include the affected version or commit,
 impact, reproduction steps, and any relevant logs that do not contain secrets or personal data. Do not attach
 credentials, access tokens, or unrelated personal information. There is no PGP key published at this time.
