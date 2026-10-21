@@ -9,16 +9,13 @@ revision check and a **safe per-canvas lock** (owner-token file + monotonic fenc
 provably dead same-host owners), and committed atomically together with a durable operation receipt, so an
 interrupted or retried operation can be replayed idempotently instead of double-applied.
 
-> **Project status: MIT-licensed OSS project — staged in a private GitHub repository, not yet publicly released.**
-> Repository: [`q973946080/jiflow-canvas-mcp`](https://github.com/q973946080/jiflow-canvas-mcp). The repository is
-> currently private while the public release is being finalized. There is no public release, npm package, Git tag,
-> established external user base or community yet. Nothing here claims adoption or an OpenAI/Codex-for-OSS benefit.
-> The final candidate passed independent verification: **179/179 automated tests and 11/11 functional acceptance
-> checks**. The public release has not been performed.
+> **Project status: MIT-licensed open-source project — publicly available on GitHub.**
+> Repository: [`q973946080/jiflow-canvas-mcp`](https://github.com/q973946080/jiflow-canvas-mcp). The v0.1.0 source release
+> is available in GitHub Releases. The project is **not published to npm** and makes no claim of external adoption
+> or an OpenAI/Codex-for-OSS benefit. Verified before release: **179/179 automated tests and 11/11 functional
+> acceptance checks**.
 >
-> **License status: MIT — approved by the owner; full MIT text in [`LICENSE`](LICENSE).**
-> Copyright (c) 2026 chen gs; `package.json` and `package-lock.json` declare `MIT`. The project is **not yet
-> published** to GitHub or npm.
+> **License: MIT.** Copyright (c) 2026 chen gs; `package.json` and `package-lock.json` declare `MIT`.
 >
 > **Release scope:** only the files in this repository are part of the public release. Internal audit,
 > provenance and verification records are not part of this repository and are never published.
@@ -107,12 +104,7 @@ business logic is included. See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the des
 
 ## Install
 
-The GitHub repository has been created at [q973946080/jiflow-canvas-mcp](https://github.com/q973946080/jiflow-canvas-mcp)
-and is currently **private for release staging**. The final independent audit has passed; public release has not yet
-been performed, and the project is not published to npm. Repository visibility will change only after maintainer
-confirmation.
-
-While the repository is private, cloning requires GitHub access. The verified repository URL and clone command are:
+The repository is public: [q973946080/jiflow-canvas-mcp](https://github.com/q973946080/jiflow-canvas-mcp). Clone it with:
 
 ```bash
 git clone https://github.com/q973946080/jiflow-canvas-mcp.git
@@ -120,8 +112,8 @@ cd jiflow-canvas-mcp
 npm ci   # optional: installs @modelcontextprotocol/sdk@1.30.0 (test-only devDependency)
 ```
 
-After the repository is made public, anyone will be able to use the same clone URL. The server itself has no runtime
-dependencies; if you only want to run it, you can skip `npm ci` and run `node src/server/main.mjs` from the checkout.
+The server itself has no runtime dependencies; if you only want to run it, you can skip `npm ci` and run
+`node src/server/main.mjs` from the checkout. The project is distributed as source on GitHub; it is not published to npm.
 
 If you only want to run the server, you can skip `npm ci`: copy the repository and run
 `node src/server/main.mjs` from it.
@@ -572,12 +564,11 @@ path containment, audit log fields and known risks. In short: the server is a lo
 nine canvas tools; it has no shell/file/network tools, refuses to start without a matching token, and keeps raw
 tokens out of disk, receipts and logs.
 
-To report a security issue, contact the maintainer through the channel that will be published with the
-repository (there is no public security contact yet — see [`SECURITY.md`](SECURITY.md#reporting)).
+To report a security issue, use the private reporting instructions in [`SECURITY.md`](SECURITY.md#reporting).
 
 ## License
 
-**MIT licensed. The full MIT license text is in [`LICENSE`](LICENSE); the project is not yet published.**
+**MIT licensed. The full MIT license text is in [`LICENSE`](LICENSE). The source is publicly available on GitHub; it is not published to npm.**
 
 - Copyright (c) 2026 chen gs; the MIT `LICENSE` file is included in this repository. The LICENSE applies
   only to the project code in this repository, not to third-party dependencies.
@@ -586,10 +577,9 @@ repository (there is no public security contact yet — see [`SECURITY.md`](SECU
 - The owner has approved the MIT license for this candidate; the provenance audit found no copied upstream
   source in the package, and the only dev dependency is MIT-licensed (`@modelcontextprotocol/sdk@1.30.0`).
 - `package.json` declares `"license": "MIT"` and the repository contains the `LICENSE` file.
-- The project is not yet published; the final release requires the final independent audit and verification
-  of the real public repository URL.
-- Any future public release includes **only** the files in this repository; internal audit, provenance and
-  verification records are never published.
+- The v0.1.0 source release is available through GitHub Releases; no npm package has been published.
+- The public release contains **only** the files in this repository; internal audit, provenance and verification
+  records are never published.
 
 See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the architecture, [`SECURITY.md`](SECURITY.md) for the security
 model, and [`docs/TOOLS.md`](docs/TOOLS.md) / [`docs/RECOVERY.md`](docs/RECOVERY.md) for the tool and recovery
