@@ -4,12 +4,10 @@
 
 服务器通过 stdin/stdout 上的换行分隔 JSON-RPC 2.0 协议，仅暴露九个列入白名单的 `canvas_*` 工具。每一次写入都需要通过带作用域（scope）的静态令牌认证，并受比较并交换（CAS）修订号检查与**安全的按画布锁**保护（所有者令牌文件 + 单调递增栅栏（fence），仅对同主机上可证明已死亡的属主执行崩溃恢复）；写入内容会与持久化的操作回执（receipt）一起原子提交，因此中断或重试的操作可以幂等重放，而不会被重复应用。
 
-> **项目状态：采用 MIT 许可证的开源项目 — 已暂存于私有 GitHub 仓库，尚未正式公开发布。**
-> 仓库地址：[q973946080/jiflow-canvas-mcp](https://github.com/q973946080/jiflow-canvas-mcp)。目前仓库为私有状态，用于完成发布准备；尚无公开发行版、npm 包、Git 标签或已建立的外部用户社区。本 README 不声称项目已有用户采用，也不声称已获得 OpenAI/Codex for OSS 优惠。
-> 最终候选包已通过独立核验：**179/179 项自动化测试和 11/11 项功能验收**。正式公开发布尚未执行。
+> **项目状态：MIT 开源项目，已在 GitHub 公开。**
+> 仓库：[q973946080/jiflow-canvas-mcp](https://github.com/q973946080/jiflow-canvas-mcp)。v0.1.0 源码发行包可在 GitHub Releases 获取。项目**尚未发布到 npm**，也不声称已有外部用户采用或已获得 OpenAI/Codex for OSS 优惠。发布前核验结果：**179/179 项自动化测试、11/11 项功能验收通过**。
 >
-> **许可证状态：MIT — 已获所有者批准；完整 MIT 文本见 [`LICENSE`](LICENSE)。**
-> Copyright (c) 2026 chen gs；`package.json` 与 `package-lock.json` 均声明 `MIT`。项目**尚未发布**到 GitHub 或 npm。
+> **许可证：MIT。** Copyright (c) 2026 chen gs；`package.json` 与 `package-lock.json` 均声明 `MIT`。
 >
 > **发布范围：** 只有本仓库中的文件属于公开发布内容。内部审计、来源与验证记录不属于本仓库，且永远不会发布。
 
@@ -67,9 +65,7 @@
 
 ## 安装
 
-GitHub 仓库已创建：[q973946080/jiflow-canvas-mcp](https://github.com/q973946080/jiflow-canvas-mcp)，目前处于**私有暂存状态**，用于完成发布准备。最终独立审计已通过，但尚未正式公开，也未发布到 npm。只有在维护者明确确认后，才会将仓库切换为公开。
-
-仓库为私有状态期间，克隆需要相应的 GitHub 访问权限。已核实的仓库地址和克隆命令如下：
+GitHub 仓库现已公开：[q973946080/jiflow-canvas-mcp](https://github.com/q973946080/jiflow-canvas-mcp)。使用以下命令克隆：
 
 ```bash
 git clone https://github.com/q973946080/jiflow-canvas-mcp.git
@@ -77,7 +73,7 @@ cd jiflow-canvas-mcp
 npm ci   # 可选：安装 @modelcontextprotocol/sdk@1.30.0（仅测试用 devDependency）
 ```
 
-仓库公开后，任何人都可以使用同一个克隆地址。服务器本身没有运行时依赖；如果只想运行服务器，可以跳过 `npm ci`，直接在检出目录运行 `node src/server/main.mjs`。
+服务器本身没有运行时依赖；如果只想运行服务器，可以跳过 `npm ci`，直接在检出目录运行 `node src/server/main.mjs`。项目通过 GitHub 提供源码，尚未发布到 npm。
 
 如果只想运行服务器，可以跳过 `npm ci`：复制仓库后直接运行 `node src/server/main.mjs`。
 
@@ -421,23 +417,23 @@ stdout 是协议通道，只承载 JSON-RPC 响应。所有诊断信息和审计
 - **PID 复用按失败即关闭处理，而不是自动消解。** 如果已崩溃属主的 PID 立即被另一个存活进程复用，锁会被视为由存活属主持有（等待 → `CANVAS_STORE_BUSY`），而不是被抢占；系统没有 PID 启动时间校验。只有当存活检查确定返回 `ESRCH` 且年龄门限已过时才会恢复。
 - **恢复守卫崩溃需要人工清理。** 崩溃的恢复守卫持有者刻意不会被自动回收（自动回收会重新打开恢复竞态）。该画布的死标记恢复随后会以 `CANVAS_LOCK_UNVERIFIABLE` 失败即关闭，直到受信任的操作者在所有画布进程停止后，用 `inspectCanvasLock` 核实状态并删除悬空守卫文件。健康画布上的正常写入不受影响，因为它们永远不会接触守卫。这是失败即关闭的可用性取舍，而不是静默修复。
 - **尚无外部安全审计。** 没有 fuzzing 或渗透测试证据；[`SECURITY.md`](SECURITY.md) 中的安全声明是设计/验证声明，不是审计认证。
-- **尚未发布。** 没有 npm 包、没有 Git 标签、没有 CI 流水线、没有公开仓库。最终公开发布需要完成最终独立审计，并核实真实的公开仓库 URL。
+- v0.1.0 源码发行包可在 GitHub Releases 获取；项目尚未发布到 npm。
 
 ## 安全
 
 威胁模型、信任边界、令牌处理、启动失败即关闭、路径包含、审计日志字段和已知风险见 [`SECURITY.md`](SECURITY.md)。简而言之：服务器是一个本地 stdio 进程，只暴露九个画布工具；没有 shell/文件/网络工具；没有匹配令牌时拒绝启动；并确保原始令牌不落入磁盘、回执或日志。
 
-如要报告安全问题，请通过随仓库发布的渠道联系维护者（目前还没有公开的安全联系方式 — 见 [`SECURITY.md`](SECURITY.md#reporting)）。
+如要报告安全问题，请按照 [`SECURITY.md`](SECURITY.md#reporting) 中的说明私下联系维护者。
 
 ## 许可证
 
-**MIT — 已获所有者批准。完整 MIT 许可证文本见 [`LICENSE`](LICENSE)；项目尚未发布。**
+**MIT 许可证。完整文本见 [`LICENSE`](LICENSE)。源码已在 GitHub 公开，尚未发布到 npm。**
 
 - Copyright (c) 2026 chen gs；本仓库包含 MIT `LICENSE` 文件。该 LICENSE 仅适用于本项目代码，不适用于第三方依赖。
 - 第三方依赖审计发现**零运行时依赖**，只有全为宽松许可的、仅开发期使用的依赖树（`@modelcontextprotocol/sdk@1.30.0`，MIT）— 与 MIT 发布没有第三方许可冲突。
 - 所有者已批准本候选项目的 MIT 许可证；来源审计未在包中发现上游复制源码，唯一的开发依赖为 MIT（`@modelcontextprotocol/sdk@1.30.0`）。
 - `package.json` 声明 `"license": "MIT"`，仓库包含 `LICENSE` 文件。
-- 项目尚未发布；最终发布需要完成最终独立审计，并核实真实的公开仓库 URL。
-- 未来的任何公开发布都**只**包含本仓库中的文件；内部审计、来源与验证记录永远不会发布。
+- v0.1.0 源码发行包可在 GitHub Releases 获取；项目尚未发布到 npm。
+- 本次公开发布**只**包含本仓库中的文件；内部审计、来源与验证记录永远不会发布。
 
 架构说明见 [`ARCHITECTURE.md`](ARCHITECTURE.md)，安全模型见 [`SECURITY.md`](SECURITY.md)，工具与恢复参考见 [`docs/TOOLS.md`](docs/TOOLS.md) / [`docs/RECOVERY.md`](docs/RECOVERY.md)。
