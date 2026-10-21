@@ -8,11 +8,11 @@ design rationale for its generic mechanisms.
 Everything here describes the code under `src/` in this repository. Where a claim is backed by test or
 acceptance evidence, that evidence is summarized in this document.
 
-> **Status:** open-source candidate; **MIT licensed** — `LICENSE` included and
-> `package.json` declares MIT. Independently verified: 179/179 automated tests and 11/11 functional acceptance
-> checks. The final public release is pending the final independent audit and is **not published**; a future
-> public release includes only the files in this repository (internal audit, provenance and verification
-> records are never published).
+> **Status:** **MIT licensed**; final independent verification passed (179/179 automated tests and 11/11 functional
+> acceptance checks). The project is staged in the private GitHub repository
+> [`q973946080/jiflow-canvas-mcp`](https://github.com/q973946080/jiflow-canvas-mcp) and is **not yet publicly released**.
+> Any public release will include only the explicitly approved project files; internal audit, provenance and
+> verification records are never published.
 
 ## Contents
 

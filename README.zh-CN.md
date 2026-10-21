@@ -4,9 +4,9 @@
 
 服务器通过 stdin/stdout 上的换行分隔 JSON-RPC 2.0 协议，仅暴露九个列入白名单的 `canvas_*` 工具。每一次写入都需要通过带作用域（scope）的静态令牌认证，并受比较并交换（CAS）修订号检查与**安全的按画布锁**保护（所有者令牌文件 + 单调递增栅栏（fence），仅对同主机上可证明已死亡的属主执行崩溃恢复）；写入内容会与持久化的操作回执（receipt）一起原子提交，因此中断或重试的操作可以幂等重放，而不会被重复应用。
 
-> **项目状态：采用 MIT 许可证的 OSS 候选项目 — 尚未正式公开发布。**
-> 目前没有公开 GitHub 仓库、npm 发布包、Git 标签、外部用户或社区。本 README 中的任何内容都不构成“已被采用”或已获得 OpenAI/Codex for OSS 优惠的声明。
-> 该项目已通过独立技术核验：**179/179 项自动化测试和 11/11 项功能验收**；最终公开发布尚待最终独立审计。
+> **项目状态：采用 MIT 许可证的开源项目 — 已暂存于私有 GitHub 仓库，尚未正式公开发布。**
+> 仓库地址：[q973946080/jiflow-canvas-mcp](https://github.com/q973946080/jiflow-canvas-mcp)。目前仓库为私有状态，用于完成发布准备；尚无公开发行版、npm 包、Git 标签或已建立的外部用户社区。本 README 不声称项目已有用户采用，也不声称已获得 OpenAI/Codex for OSS 优惠。
+> 最终候选包已通过独立核验：**179/179 项自动化测试和 11/11 项功能验收**。正式公开发布尚未执行。
 >
 > **许可证状态：MIT — 已获所有者批准；完整 MIT 文本见 [`LICENSE`](LICENSE)。**
 > Copyright (c) 2026 chen gs；`package.json` 与 `package-lock.json` 均声明 `MIT`。项目**尚未发布**到 GitHub 或 npm。
@@ -67,15 +67,17 @@
 
 ## 安装
 
-本包**尚未发布到 npm 或公开 Git 仓库** — 未执行 `npm publish`，也未创建公开仓库。MIT 许可证已获批准；最终发布仍需完成最终独立审计，并核实真实的公开仓库 URL（见下文）。
+GitHub 仓库已创建：[q973946080/jiflow-canvas-mcp](https://github.com/q973946080/jiflow-canvas-mcp)，目前处于**私有暂存状态**，用于完成发布准备。最终独立审计已通过，但尚未正式公开，也未发布到 npm。只有在维护者明确确认后，才会将仓库切换为公开。
 
-目前还没有公开仓库 URL，因此这里不提供克隆命令或占位地址。请使用随附的发布压缩包（或你的本地检出）：解压到一个目录，然后在该目录运行：
+仓库为私有状态期间，克隆需要相应的 GitHub 访问权限。已核实的仓库地址和克隆命令如下：
 
 ```bash
+git clone https://github.com/q973946080/jiflow-canvas-mcp.git
+cd jiflow-canvas-mcp
 npm ci   # 可选：安装 @modelcontextprotocol/sdk@1.30.0（仅测试用 devDependency）
 ```
 
-只有在公开 GitHub 仓库创建并核实真实 URL 之后，才会在此处补入官方仓库地址和 `git clone` 命令。不会提供占位或虚构 URL。
+仓库公开后，任何人都可以使用同一个克隆地址。服务器本身没有运行时依赖；如果只想运行服务器，可以跳过 `npm ci`，直接在检出目录运行 `node src/server/main.mjs`。
 
 如果只想运行服务器，可以跳过 `npm ci`：复制仓库后直接运行 `node src/server/main.mjs`。
 

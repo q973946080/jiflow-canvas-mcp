@@ -9,11 +9,12 @@ revision check and a **safe per-canvas lock** (owner-token file + monotonic fenc
 provably dead same-host owners), and committed atomically together with a durable operation receipt, so an
 interrupted or retried operation can be replayed idempotently instead of double-applied.
 
-> **Project status: MIT-licensed OSS candidate — not yet publicly released.**
-> There is no public GitHub repository, npm release, Git tag, external user base or community around this
-> project yet. Nothing in this README is a claim of adoption or of an OpenAI/Codex-for-OSS benefit.
-> The package passed independent technical verification: **179/179 automated tests and 11/11 functional
-> acceptance checks**; the final public release is pending the final independent audit.
+> **Project status: MIT-licensed OSS project — staged in a private GitHub repository, not yet publicly released.**
+> Repository: [`q973946080/jiflow-canvas-mcp`](https://github.com/q973946080/jiflow-canvas-mcp). The repository is
+> currently private while the public release is being finalized. There is no public release, npm package, Git tag,
+> established external user base or community yet. Nothing here claims adoption or an OpenAI/Codex-for-OSS benefit.
+> The final candidate passed independent verification: **179/179 automated tests and 11/11 functional acceptance
+> checks**. The public release has not been performed.
 >
 > **License status: MIT — approved by the owner; full MIT text in [`LICENSE`](LICENSE).**
 > Copyright (c) 2026 chen gs; `package.json` and `package-lock.json` declare `MIT`. The project is **not yet
@@ -106,19 +107,21 @@ business logic is included. See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the des
 
 ## Install
 
-The package is **not published to npm or a public Git repository** — `npm publish` and repository creation have
-not been performed. The MIT license is approved; the final publish step is gated on the final independent audit
-and on verifying the real public repository URL (see below).
+The GitHub repository has been created at [q973946080/jiflow-canvas-mcp](https://github.com/q973946080/jiflow-canvas-mcp)
+and is currently **private for release staging**. The final independent audit has passed; public release has not yet
+been performed, and the project is not published to npm. Repository visibility will change only after maintainer
+confirmation.
 
-There is no public repository URL yet, so no clone command or URL is shown. Use the supplied release archive (or
-your local checkout): extract it into a directory, then from that directory run:
+While the repository is private, cloning requires GitHub access. The verified repository URL and clone command are:
 
 ```bash
+git clone https://github.com/q973946080/jiflow-canvas-mcp.git
+cd jiflow-canvas-mcp
 npm ci   # optional: installs @modelcontextprotocol/sdk@1.30.0 (test-only devDependency)
 ```
 
-The official repository URL and `git clone` command will be added to this section only after the public GitHub
-repository is created and its URL is verified. No placeholder or invented URL is provided.
+After the repository is made public, anyone will be able to use the same clone URL. The server itself has no runtime
+dependencies; if you only want to run it, you can skip `npm ci` and run `node src/server/main.mjs` from the checkout.
 
 If you only want to run the server, you can skip `npm ci`: copy the repository and run
 `node src/server/main.mjs` from it.

@@ -4,11 +4,12 @@ This document describes the security model of `jiflow-canvas-mcp` v0.1.0: the tr
 what an AI agent can and cannot reach, token handling, fail-closed startup, path containment, store
 permissions and atomicity, audit logging, CAS as a safety property, and the known risks and limitations.
 
-> **Status:** OSS candidate; **MIT licensed** (`LICENSE` included; package declares MIT); independently verified with 179/179 automated tests and 11/11 functional acceptance checks; the final
-> public release is pending the final independent audit and is **not published**. **No external security
-> audit, fuzzing or penetration test has been performed.** The statements below describe the implemented
-> design and the verification that exists; they are not a certification. The full candidate directory must
-> never be published (a future public release is assembled only from the explicit-whitelist public package).
+> **Status:** **MIT licensed**; final independent verification passed with 179/179 automated tests and 11/11 functional
+> acceptance checks. The project is staged in the private GitHub repository
+> [`q973946080/jiflow-canvas-mcp`](https://github.com/q973946080/jiflow-canvas-mcp) and is **not yet publicly released**.
+> **No external security audit, fuzzing or penetration test has been performed.** The statements below describe
+> the implemented design and the verification that exists; they are not a certification. The full candidate
+> directory must never be published (only the explicit-whitelist public package is eligible for release).
 >
 > **This is not a production-hardened multi-tenant service.** It is a local, single-user, stdio-only server.
 

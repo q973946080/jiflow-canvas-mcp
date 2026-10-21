@@ -3,8 +3,9 @@
 Reference for the nine whitelisted MCP tools of `jiflow-canvas-mcp` v0.1.0. This file mirrors the single
 source of truth in `src/mcp/whitelist.js`; if they ever disagree, the code wins.
 
-> **Status:** OSS candidate; **MIT licensed** (`LICENSE` included; package declares MIT); independently verified with 179/179 automated tests and 11/11 functional acceptance checks; the final
-> public release is pending the final independent audit and **not published**.
+> **Status:** **MIT licensed**; final independent verification passed (179/179 automated tests and 11/11 functional
+> acceptance checks). This project is staged in the private GitHub repository
+> [`q973946080/jiflow-canvas-mcp`](https://github.com/q973946080/jiflow-canvas-mcp) and is **not yet publicly released**.
 
 ## Conventions
 
