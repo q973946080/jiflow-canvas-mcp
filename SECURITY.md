@@ -334,14 +334,18 @@ deployment. It is design verification, not a security audit.
 
 ## Reporting
 
-**No public security contact exists yet.** This candidate has not been released, so no security email address,
-PGP key or GitHub private-advisory channel is published. Before any public release, the maintainer must add a
-real reporting channel here (for example a dedicated address or a private security advisory link) and include
-a response expectation.
+Please report suspected security vulnerabilities privately by emailing **[chen01220992@gmail.com](mailto:chen01220992@gmail.com)**.
+Do not post an unpatched vulnerability in a public issue or discussion. Include the affected version or commit,
+impact, reproduction steps, and any relevant logs that do not contain secrets or personal data. Do not attach
+credentials, access tokens, or unrelated personal information. There is no PGP key published at this time.
 
-Until then: do not deploy this candidate in an untrusted or public environment; report issues to the project
-owner through the private channel by which this candidate was delivered.
+The maintainer aims to acknowledge a report within **7 calendar days**. Investigation, fixes, and disclosure timing
+depend on severity, reproducibility, and maintainer availability; an acknowledgement target is not a guarantee
+of a remediation deadline. If you do not receive an acknowledgement after 7 days, follow up using the same email.
 
-See [`README.md`](README.md) for the license/status banner and [`ARCHITECTURE.md`](ARCHITECTURE.md) for the
-design. The final public release additionally requires the final independent audit, a verified repository URL,
-and a real security contact being published here.
+This project has passed its current independent technical verification, but that is not a substitute for an
+external security audit, fuzzing, or penetration testing. The repository remains private during release staging;
+public release requires a separate explicit maintainer decision. Do not deploy this candidate in an untrusted or
+public environment without your own security review.
+
+See [`README.md`](README.md) for project status and [`ARCHITECTURE.md`](ARCHITECTURE.md) for the design.
